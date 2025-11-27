@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shower Safari - Thiago Emmanuel</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #f5f3e8 0%, #e8f0e3 100%);
+    color: #5a6d4a;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 800px;
+    width: 90%; /* se adapta al móvil */
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #7ba662 0%, #a4c896 100%);
+    padding: 60px 30px;
+    text-align: center;
+    position: relative;
+}
+
+.baby-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5em;
+    color: #d4af37;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.3em;
+    color: white;
+    font-weight: 500;
+}
+
+/* Animals */
+.animals {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.animals img {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+/* Main content */
+.content {
+    padding: 30px 20px;
+    position: relative;
+}
+
+.invitation-text {
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #6b7d5c;
+    margin-bottom: 40px;
+}
+
+.invitation-text .highlight {
+    color: #d4af37;
+    font-weight: 700;
+}
+
+/* Info boxes */
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.info-box {
+    background: linear-gradient(135deg, #f8f6e8 0%, #f0f4ec 100%);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    border: 3px solid #d4af37;
+    box-shadow: 0 5px 15px rgba(212,175,55,0.2);
+}
+
+.info-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.info-title {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: #7ba662;
+    margin-bottom: 8px;
+}
+
+.info-detail {
+    font-size: 1em;
+    color: #6b7d5c;
+    font-weight: 500;
+}
+
+/* Confirmation message */
+.confirmation-text {
+    text-align: center;
+    font-size: 1.2em;
+    color: #6b7d5c; /* mismo color que otros textos */
+    font-weight: 600;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #f8f6e8 0%, #f0f4ec 100%);
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 2px solid #d4af37;
+    box-shadow: 0 5px 15px rgba(212,175,55,0.2);
+    transition: opacity 0.5s ease-out;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* permite que bajen en pantallas pequeñas */
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    white-space: nowrap; /* evita que se rompa el texto */
+}
+
+@media (max-width: 480px) {
+    .btn {
+        width: 100%; /* ocupan todo el ancho disponible */
+        justify-content: center;
+        font-size: 0.95em;
+        padding: 10px 15px;
+    }
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+/* Footer */
+footer {
+    background: #7ba662;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    font-size: 0.9em;
+}
+
+footer .heart {
+    color: #d4af37;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .falling-leaf {
+        width: 15px;
+        height: 15px;
+        opacity: 0.5;
+    }
+}
+
+
+.falling-leaf {
+    position: absolute;
+    top: -50px; /* empieza fuera de la pantalla */
+    width: 25px;  /* tamaño de hoja */
+    height: 25px;
+    background: url('Hojas.png') no-repeat center/contain; /* tu imagen */
+    opacity: 0.5; /* transparencia ligera */
+    pointer-events: none; /* para que no interfiera con clicks */
+    animation: fall linear infinite;
+}
+
+/* Caída vertical */
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(200vh) rotate(180deg); }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="leaves-container">
+    <!-- Las hojas se generarán con JS -->
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1 class="baby-name">Thiago Emmanuel</h1>
+        <p class="subtitle">¡Está por llegar a su aventura Safari! 🌿</p>
+        <div class="animals">
+                <img src="Zebra.png" class="animal" alt="Zebra">
+                <img src="Leon.png" class="animal" alt="Leon">
+                <img src="Mono.png" class="animal" alt="Mono">
+                <img src="Tigre.png" class="animal" alt="Tigre">
+                <img src="Elefante.png" class="animal" alt="Elefante">
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="invitation-text">
+            ¡Hola! Soy <span class="highlight">Thiago Emmanuel</span> y aunque aún no he llegado al mundo, 
+            ya quiero conocerte. 🍼<br><br>
+            Mis papás Leidy y Naren están organizando una <span class="highlight">aventura Safari</span> 
+            para celebrar mi llegada, y tú eres muy especial para mí.<br><br>
+            ¿Te gustaría acompañarnos en esta expedición? 🦁✨
+        </div>
+
+        <!-- Información del evento -->
+        <div class="info-section">
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Baby+Shower+Thiago+Emmanuel&dates=20250110T160000/20250110T180000&details=Ven+a+celebrar+el+Baby+Shower+de+Thiago+Emmanuel!&location=Sal%C3%B3n+Safari+Garden,+Transversal+42+A+%233-89" 
+                target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="info-box">
+                    <div class="info-icon">📅</div>
+                    <div class="info-title">Fecha</div>
+                    <div class="info-detail" id="countdown">
+                        Cargando...
+                    </div>
+                    <div class="info-detail" style="margin-top: 10px; font-size: 0.9em;">
+                        Selecciona aquí para agregar al calendario 📆
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/maps?q=Transversal+42+A+%233-89" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="info-box">
+                    <div class="info-icon">📍</div>
+                    <div class="info-title">Lugar</div>
+                    <div class="info-detail">
+                        Salón Safari Garden<br>Transversal 42 A #3-89<br>
+                        Selecciona para ver en Maps 🗺️
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Confirmación -->
+        <div class="confirmation-text" id="confirmationText">
+            🌟 Confirma tu asistencia seleccionando a quién acompañarás: <strong>Papá 💙</strong> o <strong>Mamá 💖</strong>. ¡Estamos muy felices de que formes parte de esta aventura Safari! 🌟
+        </div>
+
+        <div class="buttons">
+            <a href="https://wa.me/573113507862?text=¡Hola!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Thiago%20Emmanuel" 
+            class="btn btn-whatsapp" target="_blank">
+            Confirmar a Papá Naren 💙
+            </a>
+            <a href="https://wa.me/573225165320?text=¡Hola!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Thiago%20Emmanuel" 
+            class="btn btn-whatsapp" target="_blank">
+            Confirmar a Mamá Leidy 💖
+            </a>
+            
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Hecho con <span class="heart">♥</span> para la llegada de Thiago Emmanuel</p>
+        <p style="margin-top: 10px; font-size: 0.85em; opacity: 0.9;">🌿 Aventura Safari 2025 🌿</p>
+    </footer>
+</div>
+<script>
+function confirmAttendance(person, emoji) {
+    const textDiv = document.getElementById('confirmationText');
+    textDiv.textContent = `¡Gracias por confirmar a ${person}! Tu presencia hará que la aventura sea aún más mágica 🌿`;
+}
+
+function startCountdown(targetDateStr) {
+    const countdownEl = document.getElementById('countdown');
+    const targetDate = new Date(targetDateStr).getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            countdownEl.textContent = "¡El evento ya comenzó!";
+            clearInterval(interval);
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+}
+
+// Fecha del evento: 10 de enero de 2026 a las 16:00
+startCountdown('2026-01-10T16:00:00');
+const numLeaves = 10;
+const leavesContainer = document.querySelector('.container'); // ahora dentro del contenedor
+
+for (let i = 0; i < numLeaves; i++) {
+    const leaf = document.createElement('div');
+    leaf.classList.add('falling-leaf');
+    leaf.style.left = Math.random() * 90 + '%'; // un poco de margen
+    leaf.style.animationDelay = Math.random() * 5 + 's';
+    leaf.style.animationDuration = (Math.random() * 5 + 3) + 's';
+    leavesContainer.appendChild(leaf);
+}
+
+</script>
+</body>
+</html>
