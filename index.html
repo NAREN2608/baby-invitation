@@ -299,42 +299,42 @@ footer .heart {
                     <input type="radio" name="regalo"
                         data-regalo="Cargador"
                         data-tipo="unico">
-                    Cargador
+                    Cargador <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
                         data-regalo="Cambiador"
                         data-tipo="unico">
-                    Cambiador
+                    Cambiador <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
                         data-regalo="Teteros"
                         data-tipo="unico">
-                    Teteros
+                    Teteros <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
                         data-regalo="Alfombra de juego"
                         data-tipo="unico">
-                    Alfombra de juego
+                    Alfombra de juego <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
                         data-regalo="Silla para carro"
                         data-tipo="unico">
-                    Silla para carro
+                    Silla para carro <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:12px;">
                     <input type="radio" name="regalo"
                         data-regalo="Silla comedor"
                         data-tipo="unico">
-                    Silla comedor
+                    Silla comedor <span class="contador-regalo">(0)</span>
                 </label>
 
                 <!-- REGALOS MÚLTIPLES -->
@@ -342,50 +342,44 @@ footer .heart {
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
-                        data-regalo="Ropa 12-18 meses"
+                        data-regalo="Ropa 12-18"
                         data-tipo="multiple">
-                    Ropa 12-18 meses
-                    <span class="contador-regalo"></span>
+                    Ropa 12–18 meses <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
-                        data-regalo="Ropa 18-24 meses"
+                        data-regalo="Ropa 18-24"
                         data-tipo="multiple">
-                    Ropa 18-24 meses
-                    <span class="contador-regalo"></span>
+                    Ropa 18–24 meses <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
                         data-regalo="Toallas"
                         data-tipo="multiple">
-                    Toallas
-                    <span class="contador-regalo"></span>
+                    Toallas <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
                         data-regalo="Kit de aseo"
                         data-tipo="multiple">
-                    Kit de aseo
-                    <span class="contador-regalo"></span>
+                    Kit de aseo <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:6px;">
                     <input type="radio" name="regalo"
                         data-regalo="Ruanas"
                         data-tipo="multiple">
-                    Ruanas
-                    <span class="contador-regalo"></span>
+                    Ruanas <span class="contador-regalo">(0)</span>
                 </label>
 
                 <label style="display:block; margin-bottom:10px;">
                     <input type="radio" name="regalo"
-                        data-regalo="Baberos + medias + gorros"
+                        data-regalo="Baberos"
                         data-tipo="multiple">
-                    Baberos + medias + gorros
-                    <span class="contador-regalo"></span>
+                    Baberos + medias + gorros <span class="contador-regalo">(0)</span>
                 </label>
 
                 <!-- RECORDATORIO -->
@@ -397,7 +391,6 @@ footer .heart {
 
             </div>
         </div>
-
 
         <div class="buttons">
             <button class="btn btn-whatsapp" onclick="confirmarRegalo()">
@@ -416,7 +409,7 @@ footer .heart {
 </div>
 <script>
 function confirmAttendance(person, emoji) {
-    const textDiv = document.getElementById('confirmationText');
+        const textDiv = document.getElementById('confirmationText');
     textDiv.textContent = `¡Gracias por confirmar a ${person}! Tu presencia hará que la aventura sea aún más mágica 🌿`;
 }
 
@@ -458,63 +451,34 @@ for (let i = 0; i < numLeaves; i++) {
     leavesContainer.appendChild(leaf);
 }
 
-/* ===============================
-   CONFIGURACIÓN API GOOGLE SHEETS
-   =============================== */
-
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNgKc0cACcPsk0aS4kDa7kr3Z5xr20Bf16jKec0kgjcSGL-pds8ATJlq7zgnM5nUpWXw/exec"; 
-// ← aquí pegas la URL del Web App DESPUÉS de implementar
-
-
-/* ===============================
-   CARGAR REGALOS DESDE SHEETS
-   =============================== */
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzH4RorkIJ3w5OEALjO_h8ET-qDqcPrmMD2lVWxbXMGwas4dKvkSTgXkhBAZhb27i3BVg/exec";
 
 async function cargarRegalos() {
-    if (!GOOGLE_SCRIPT_URL) {
-        console.warn("Google Script URL no configurada");
-        return;
-    }
-
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL);
         const data = await response.json();
 
         data.forEach(regalo => {
-            const checkbox = document.querySelector(
+            const input = document.querySelector(
                 `input[data-regalo="${regalo.nombre}"]`
             );
 
-            if (!checkbox) return;
+            if (!input) return;
 
-            if (regaloEsUnico && cantidad > 0) {
-            option.disabled = true;
-            option.text += " (ya asignado)";
-            }
+            const contador = input
+                .closest("label")
+                .querySelector(".contador-regalo");
 
+            if (!contador) return;
 
-            // Regalos múltiples: mostrar contador
-            if (regalo.tipo === "multiple") {
-                const contador = checkbox
-                    .closest("label")
-                    .querySelector(".contador-regalo");
-
-                if (contador) {
-                    contador.textContent = `(${regalo.cantidad})`;
-                }
-            }
+            contador.textContent = `(${regalo.cantidad})`;
         });
 
     } catch (error) {
         console.error("Error cargando regalos:", error);
     }
 }
-
-
-/* ===============================
-   CONFIRMAR REGALO SELECCIONADO
-   =============================== */
-
 function confirmarRegalo() {
     const seleccionado = document.querySelector(
         'input[name="regalo"]:checked'
@@ -528,9 +492,8 @@ function confirmarRegalo() {
     const regalo = seleccionado.dataset.regalo;
     const tipo = seleccionado.dataset.tipo;
 
-    // 1️⃣ WhatsApp (SIEMPRE FUNCIONA)
     const mensaje = encodeURIComponent(
-        `¡Hola! Confirmo mi asistencia al Baby Shower de Thiago Emmanuel 🎉
+`¡Hola! Confirmo mi asistencia al Baby Shower de Thiago Emmanuel 🎉
 Regalo seleccionado: ${regalo}`
     );
 
@@ -539,27 +502,23 @@ Regalo seleccionado: ${regalo}`
         "_blank"
     );
 
-    // 2️⃣ Envío a Google Sheets (en segundo plano)
-    if (!GOOGLE_SCRIPT_URL) return;
     fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({
-            regalo: regalo,
-            tipo: tipo
-        })
-    });
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: new URLSearchParams({
+        regalo: regalo,
+        tipo: tipo
+    })
+});
+
+// 🔹 volver a cargar contadores
+setTimeout(cargarRegalos, 1000);
+
 }
 
-
-/* ===============================
-   AUTO CARGA AL ABRIR LA INVITACIÓN
-   =============================== */
-
-document.addEventListener("DOMContentLoaded", cargarRegalos);
-</script>
+document.addEventListener("DOMContentLoaded", cargarRegalos);</script>
 </body>
 </html>
