@@ -218,7 +218,7 @@ footer .heart {
 /* Caída vertical */
 @keyframes fall {
     0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(200vh) rotate(180deg); }
+    100% { transform: translateY(300vh) rotate(180deg); }
 }
 
 </style>
@@ -274,29 +274,137 @@ footer .heart {
                     <div class="info-icon">📍</div>
                     <div class="info-title">Lugar</div>
                     <div class="info-detail">
-                        Salón Safari Garden<br>Transversal 42 A #3-89<br>
+                        Casa Tia Cris<br>Transversal 42 A #3-89<br>
                         Selecciona para ver en Maps 🗺️
                     </div>
                 </div>
             </a>
         </div>
 
-        <!-- Confirmación -->
-        <div class="confirmation-text" id="confirmationText">
-            🌟 Confirma tu asistencia seleccionando a quién acompañarás: <strong>Papá 💙</strong> o <strong>Mamá 💖</strong>. ¡Estamos muy felices de que formes parte de esta aventura Safari! 🌟
+        <div class="confirmation-text" id="confirmationText">   
+            Confirma tu asistencia y selecciona el regalo que deseas obsequiar.  
+            Al confirmar, el regalo quedará reservado para ti 💝🦁
         </div>
 
-        <div class="buttons">
-            <a href="https://wa.me/573113507862?text=¡Hola!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Thiago%20Emmanuel" 
-            class="btn btn-whatsapp" target="_blank">
-            Confirmar a Papá Naren 💙
-            </a>
-            <a href="https://wa.me/573225165320?text=¡Hola!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Thiago%20Emmanuel" 
-            class="btn btn-whatsapp" target="_blank">
-            Confirmar a Mamá Leidy 💖
-            </a>
-            
+        <div class="info-box" style="margin-bottom: 25px;">
+            <div class="info-icon">🎁</div>
+            <div class="info-title">Regalo sugerido</div>
+
+            <div class="info-detail" style="text-align:left; max-width:300px; margin:0 auto;">
+
+                <!-- REGALOS ÚNICOS -->
+                <div style="margin-bottom:10px; font-weight:600;">🎁 Regalos únicos</div>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Cargador"
+                        data-tipo="unico">
+                    Cargador
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Cambiador"
+                        data-tipo="unico">
+                    Cambiador
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Teteros"
+                        data-tipo="unico">
+                    Teteros
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Alfombra de juego"
+                        data-tipo="unico">
+                    Alfombra de juego
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Silla para carro"
+                        data-tipo="unico">
+                    Silla para carro
+                </label>
+
+                <label style="display:block; margin-bottom:12px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Silla comedor"
+                        data-tipo="unico">
+                    Silla comedor
+                </label>
+
+                <!-- REGALOS MÚLTIPLES -->
+                <div style="margin-bottom:10px; font-weight:600;">👕 Regalos múltiples</div>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Ropa 12-18 meses"
+                        data-tipo="multiple">
+                    Ropa 12-18 meses
+                    <span class="contador-regalo"></span>
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Ropa 18-24 meses"
+                        data-tipo="multiple">
+                    Ropa 18-24 meses
+                    <span class="contador-regalo"></span>
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Toallas"
+                        data-tipo="multiple">
+                    Toallas
+                    <span class="contador-regalo"></span>
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Kit de aseo"
+                        data-tipo="multiple">
+                    Kit de aseo
+                    <span class="contador-regalo"></span>
+                </label>
+
+                <label style="display:block; margin-bottom:6px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Ruanas"
+                        data-tipo="multiple">
+                    Ruanas
+                    <span class="contador-regalo"></span>
+                </label>
+
+                <label style="display:block; margin-bottom:10px;">
+                    <input type="radio" name="regalo"
+                        data-regalo="Baberos + medias + gorros"
+                        data-tipo="multiple">
+                    Baberos + medias + gorros
+                    <span class="contador-regalo"></span>
+                </label>
+
+                <!-- RECORDATORIO -->
+                <div style="margin-top:15px; font-size:0.9em; font-weight:600; color:#6b7d5c;">
+                    🧷 Recuerda traer también:<br>
+                    • Pañales etapa 3 en adelante<br>
+                    • Pañitos húmedos
+                </div>
+
+            </div>
         </div>
+
+
+        <div class="buttons">
+            <button class="btn btn-whatsapp" onclick="confirmarRegalo()">
+                Confirmar a Papá Naren 💙
+            </button>
+        </div>
+
 
     </div>
 
@@ -338,20 +446,120 @@ function startCountdown(targetDateStr) {
     const interval = setInterval(updateCountdown, 1000);
 }
 
-// Fecha del evento: 10 de enero de 2026 a las 16:00
-startCountdown('2026-01-10T16:00:00');
+startCountdown('2026-02-21T17:00:00');
 const numLeaves = 10;
-const leavesContainer = document.querySelector('.container'); // ahora dentro del contenedor
-
+const leavesContainer = document.querySelector('.container'); 
 for (let i = 0; i < numLeaves; i++) {
     const leaf = document.createElement('div');
     leaf.classList.add('falling-leaf');
-    leaf.style.left = Math.random() * 90 + '%'; // un poco de margen
+    leaf.style.left = Math.random() * 90 + '%'; 
     leaf.style.animationDelay = Math.random() * 5 + 's';
     leaf.style.animationDuration = (Math.random() * 5 + 3) + 's';
     leavesContainer.appendChild(leaf);
 }
 
+/* ===============================
+   CONFIGURACIÓN API GOOGLE SHEETS
+   =============================== */
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNgKc0cACcPsk0aS4kDa7kr3Z5xr20Bf16jKec0kgjcSGL-pds8ATJlq7zgnM5nUpWXw/exec"; 
+// ← aquí pegas la URL del Web App DESPUÉS de implementar
+
+
+/* ===============================
+   CARGAR REGALOS DESDE SHEETS
+   =============================== */
+
+async function cargarRegalos() {
+    if (!GOOGLE_SCRIPT_URL) {
+        console.warn("Google Script URL no configurada");
+        return;
+    }
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL);
+        const data = await response.json();
+
+        data.forEach(regalo => {
+            const checkbox = document.querySelector(
+                `input[data-regalo="${regalo.nombre}"]`
+            );
+
+            if (!checkbox) return;
+
+            if (regaloEsUnico && cantidad > 0) {
+            option.disabled = true;
+            option.text += " (ya asignado)";
+            }
+
+
+            // Regalos múltiples: mostrar contador
+            if (regalo.tipo === "multiple") {
+                const contador = checkbox
+                    .closest("label")
+                    .querySelector(".contador-regalo");
+
+                if (contador) {
+                    contador.textContent = `(${regalo.cantidad})`;
+                }
+            }
+        });
+
+    } catch (error) {
+        console.error("Error cargando regalos:", error);
+    }
+}
+
+
+/* ===============================
+   CONFIRMAR REGALO SELECCIONADO
+   =============================== */
+
+function confirmarRegalo() {
+    const seleccionado = document.querySelector(
+        'input[name="regalo"]:checked'
+    );
+
+    if (!seleccionado) {
+        alert("Debes seleccionar un regalo");
+        return;
+    }
+
+    const regalo = seleccionado.dataset.regalo;
+    const tipo = seleccionado.dataset.tipo;
+
+    // 1️⃣ WhatsApp (SIEMPRE FUNCIONA)
+    const mensaje = encodeURIComponent(
+        `¡Hola! Confirmo mi asistencia al Baby Shower de Thiago Emmanuel 🎉
+Regalo seleccionado: ${regalo}`
+    );
+
+    window.open(
+        `https://wa.me/573113507862?text=${mensaje}`,
+        "_blank"
+    );
+
+    // 2️⃣ Envío a Google Sheets (en segundo plano)
+    if (!GOOGLE_SCRIPT_URL) return;
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+            regalo: regalo,
+            tipo: tipo
+        })
+    });
+}
+
+
+/* ===============================
+   AUTO CARGA AL ABRIR LA INVITACIÓN
+   =============================== */
+
+document.addEventListener("DOMContentLoaded", cargarRegalos);
 </script>
 </body>
 </html>
